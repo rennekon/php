@@ -12,14 +12,16 @@ class TelemetryManager
     /** @var array */
     private $latencies = [];
 
-    public function __construct(){}
+    public function __construct()
+    {
+    }
 
     public function operationLatencies()
     {
         $operationLatencies = [];
 
         foreach ($this->latencies as $endpointName => $endpointLatencies) {
-            $latencyKey = "l_".$endpointName;
+            $latencyKey = "l_" . $endpointName;
 
             $endpointAvgLatency = $this->averageLatencyFromData($endpointLatencies);
 
@@ -73,7 +75,8 @@ class TelemetryManager
         }
     }
 
-    public static function averageLatencyFromData($endpointLatencies) {
+    public static function averageLatencyFromData($endpointLatencies)
+    {
         $totalLatency = 0;
 
         foreach ($endpointLatencies as $value) {
@@ -87,9 +90,12 @@ class TelemetryManager
     {
         $endpoint = "";
 
-        switch($operationType) {
+        switch ($operationType) {
             case PNOperationType::PNPublishOperation:
                 $endpoint = "pub";
+                break;
+            case PNOperationType::PNSignalOperation:
+                $endpoint = "sig";
                 break;
             case PNOperationType::PNHistoryOperation:
             case PNOperationType::PNHistoryDeleteOperation:

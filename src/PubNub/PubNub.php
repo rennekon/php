@@ -117,6 +117,14 @@ class PubNub
     }
 
     /**
+     * @return Signal
+     */
+    public function signal()
+    {
+        return new Signal($this);
+    }
+
+    /**
      * @return SubscribeBuilder
      */
     public function subscribe()
